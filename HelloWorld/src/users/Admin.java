@@ -28,6 +28,12 @@ public class Admin extends User{
 	{
 		return "Hello admin : " + this.name + " the " + this.title;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.name + " the " + this.title;
+	}
 
 	
 }

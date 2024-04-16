@@ -15,4 +15,10 @@ public class Member extends User{
 	public String present() {
 		return "Hello member : " + this.name + " the normal member";
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.name + " the normal member";
+	}
 }

@@ -14,4 +14,5 @@ abstract public class User {
 	}
 	
 	abstract String present();
+	public abstract String toString();
 }

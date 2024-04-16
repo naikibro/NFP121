@@ -1,6 +1,8 @@
 package gui;
 
 import javax.swing.*;
+
+import entreprise.Entreprise;
 import users.Admin;
 import users.Member;
 import java.awt.*;
@@ -10,22 +12,45 @@ public class UserAdminGUI extends JFrame {
     private static final long serialVersionUID = 1L;
     private JTextField nameField, titleField;
     private JTextArea outputArea;
-
+    private Entreprise entreprise;
+    
     public UserAdminGUI() {
-        super("User and Admin Management");
+        
+    	super("User and Admin Management");
+        
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
+        // Entreprise title
+        JPanel entreprisePanel = new JPanel();
+        Entreprise entreprise = new Entreprise("Naiki entreprise", 1, null);
+        entreprisePanel.add(new JLabel("Mon entreprise : " + entreprise.name));
+        
         // Input panel
-        JPanel inputPanel = new JPanel(new GridLayout(3, 2));
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+        inputPanel.add(new JLabel("Ajouter un Member à l'entreprise"));
         inputPanel.add(new JLabel("Name:"));
         nameField = new JTextField();
         inputPanel.add(nameField);
         inputPanel.add(new JLabel("Title :"));
         titleField = new JTextField();
         inputPanel.add(titleField);
-        add(inputPanel, BorderLayout.NORTH);
+
+        // Output area
+        outputArea = new JTextArea(5, 20);
+        outputArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(outputArea);
+
+        // Panel for input and output
+        JPanel centerPanel = new JPanel(new BorderLayout());
+        centerPanel.add(inputPanel, BorderLayout.NORTH);
+        centerPanel.add(scrollPane, BorderLayout.CENTER);
+
+        // Adding panels to the frame
+        add(entreprisePanel, BorderLayout.NORTH);
+        add(centerPanel, BorderLayout.CENTER);
 
         // Buttons
         JPanel buttonPanel = new JPanel();
@@ -33,13 +58,7 @@ public class UserAdminGUI extends JFrame {
         JButton addAdminButton = new JButton("Add Admin");
         buttonPanel.add(addAdminButton);
         buttonPanel.add(addMemberButton);
-        add(buttonPanel, BorderLayout.CENTER);
-
-        // Output area
-        outputArea = new JTextArea(5, 20);
-        outputArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(outputArea);
-        add(scrollPane, BorderLayout.SOUTH);
+        add(buttonPanel, BorderLayout.SOUTH);
 
         // Event listeners
         addAdminButton.addActionListener(new ActionListener() {
