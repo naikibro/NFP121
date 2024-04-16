@@ -39,7 +39,7 @@ public class HelloWorld {
 		System.out.println(user2);
 		
 		System.out.println("\n\n ----- EXEMPLE DE RELATION DE COMPOSITION -----\n");
-		Truck truck = new Truck("Cummings V8 7L");
+		Truck truck = new Truck("MAN BIG BOY TRUCK", "Cummings V8 7L");
 		System.out.println(truck);
 		
 		System.out.println("\n\n ----- SUPRESSION DU CAMION-----");
